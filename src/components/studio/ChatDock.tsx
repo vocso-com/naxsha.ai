@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUp, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
+import { glassBlur } from "@/lib/studio";
 
 export type ChatMsg = { id: string; from: "ai" | "user"; text: string };
 
@@ -52,6 +53,7 @@ export function ChatDock({
           exit={{ opacity: 0, x: -24 }}
           transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           className="st-glass absolute left-4 top-4 bottom-4 w-[340px] z-20 flex flex-col rounded-[22px] overflow-hidden"
+          style={glassBlur()}
         >
           {/* header */}
           <div className="px-4 py-3.5 flex items-center gap-2.5" style={{ borderBottom: "0.5px solid var(--st-border)" }}>
@@ -155,6 +157,7 @@ export function ChatDock({
           exit={{ opacity: 0, y: 12, scale: 0.96 }}
           transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           className="st-glass-float absolute left-4 bottom-4 z-20 w-[320px] rounded-[20px] overflow-hidden"
+          style={glassBlur()}
         >
           {/* header — click to expand */}
           <button onClick={onToggle} className="w-full px-3 py-2.5 flex items-center gap-2.5 text-left transition-colors"

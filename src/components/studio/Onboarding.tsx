@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { ONBOARDING } from "@/lib/studio";
+import { ONBOARDING, glassBlur } from "@/lib/studio";
 
 type Msg = { from: "ai" | "user"; text: string };
 
@@ -166,7 +166,7 @@ export function Onboarding({ onComplete }: { onComplete: (answers: Record<string
         </div>
 
         {/* conversation card */}
-        <div className="st-glass rounded-[24px] overflow-hidden">
+        <div className="st-glass rounded-[24px] overflow-hidden" style={glassBlur()}>
           <div ref={scrollRef} className="px-6 pt-6 pb-2 space-y-3 max-h-[42vh] overflow-y-auto">
             {messages.map((m, i) => (
               <motion.div

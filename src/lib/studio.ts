@@ -2,6 +2,8 @@
 // onboarding script and tool definitions. Coordinates are in feet,
 // origin top-left, +x = east, +y = south (same convention as floorplan.ts).
 
+import type { CSSProperties } from "react";
+
 export type RoomKind =
   | "living"
   | "kitchen"
@@ -94,6 +96,19 @@ export type PlacedItem = {
 // ---------------------------------------------------------------------------
 // Default project — a 30×40 G+1 home.
 // ---------------------------------------------------------------------------
+
+/**
+ * Frosted-glass backdrop blur as an inline style.
+ *
+ * Next's CSS processor (Lightning CSS) strips `backdrop-filter` out of our
+ * .st-glass* class rules, so the blur never reaches the browser. Inline
+ * styles bypass that processing, so we apply the blur here instead. Spread
+ * this onto any translucent glass surface that needs real refraction.
+ */
+export const glassBlur = (px = 24): CSSProperties => ({
+  backdropFilter: `blur(${px}px) saturate(185%)`,
+  WebkitBackdropFilter: `blur(${px}px) saturate(185%)`,
+});
 
 export const DEFAULT_PLOT: Plot = { w: 30, h: 40, facing: "S" };
 

@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Sparkles, PenLine, ArrowRight, ArrowUpRight, FileStack } from "lucide-react";
-import { RECENT_PROJECTS as RECENTS, type RecentProject } from "@/lib/studio";
+import { RECENT_PROJECTS as RECENTS, glassBlur, type RecentProject } from "@/lib/studio";
 
 function greeting() {
   const h = new Date().getHours();
@@ -71,7 +71,7 @@ export function HomeScreen({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="w-full flex flex-col items-center"
-          style={{ maxWidth: 560 }}
+          style={{ maxWidth: "min(92vw, 760px)" }}
         >
           {/* greeting — centered */}
           <p className="text-center" style={{ fontFamily: "var(--font-naxsha-mono)", fontSize: 11, letterSpacing: "0.14em", color: "var(--st-text-3)" }}>
@@ -87,6 +87,7 @@ export function HomeScreen({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.05 }}
             className="st-glass rounded-[24px] p-2.5 w-full mt-8"
+            style={glassBlur()}
           >
             {/* primary CTA */}
             <motion.button
@@ -155,6 +156,7 @@ export function HomeScreen({
                   key={p.id}
                   onClick={() => onOpenProject(p.id)}
                   className="st-glass-float group flex flex-col rounded-2xl overflow-hidden text-left transition-transform hover:-translate-y-0.5"
+                  style={glassBlur(16)}
                 >
                   <span className="block w-full relative" style={{ height: 108, borderBottom: "0.5px solid var(--st-border)" }}>
                     <MiniThumb glyph={p.glyph} />

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Download, Share2, Undo2, Redo2, ChevronDown, Sun, Moon, Plus, Sparkles } from "lucide-react";
-import type { Floor, RecentProject } from "@/lib/studio";
+import { glassBlur, type Floor, type RecentProject } from "@/lib/studio";
 
 function ProjectSwitcher({
   projectName, projects, onSwitchProject, onNewProject,
@@ -130,8 +130,8 @@ export function StudioNav({
 }) {
   return (
     <header
-      className="st-glass st-nav-depth h-16 shrink-0 flex items-center px-5 gap-3 z-30"
-      style={{ borderRadius: 0, borderLeft: "none", borderRight: "none", borderTop: "none" }}
+      className="st-nav-surface st-nav-depth h-16 shrink-0 flex items-center px-5 gap-3 z-30"
+      style={{ ...glassBlur(28), borderRadius: 0, borderLeft: "none", borderRight: "none", borderTop: "none" }}
     >
       <div className="flex items-center gap-2.5">
         <Mark />

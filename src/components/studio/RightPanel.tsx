@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { RotateCw, Trash2, Check, X, DoorOpen, RectangleHorizontal, ScanLine, Compass } from "lucide-react";
 import {
   type Floor, type PlacedItem, type Plot, type CostBreakdown,
-  furnitureSpec, roomArea, roomCost, ftIn, formatINR, formatINRShort, KIND_LABEL, vastuVerdict,
+  furnitureSpec, roomArea, roomCost, ftIn, formatINR, formatINRShort, KIND_LABEL, vastuVerdict, glassBlur,
 } from "@/lib/studio";
 
 type Sel = { type: "room" | "item"; id: string } | null;
@@ -25,7 +25,7 @@ export function RightPanel({
   onClear: () => void;
 }) {
   return (
-    <div className="st-glass absolute right-4 top-4 bottom-4 w-[316px] z-20 flex flex-col rounded-[22px] overflow-hidden">
+    <div className="st-glass absolute right-4 top-4 bottom-4 w-[316px] z-20 flex flex-col rounded-[22px] overflow-hidden" style={glassBlur()}>
       {/* tabs */}
       <div className="flex items-center gap-1 p-1.5 m-3 rounded-xl" style={{ background: "var(--st-input)" }}>
         {(["properties", "costs"] as const).map((t) => (

@@ -5,7 +5,7 @@ import {
   MousePointer2, Hand, Sofa, Ruler, Frame, RectangleHorizontal, DoorOpen, Type,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { TOOLS, FURNITURE, type ToolId, type FurnitureKind, formatINR } from "@/lib/studio";
+import { TOOLS, FURNITURE, glassBlur, type ToolId, type FurnitureKind, formatINR } from "@/lib/studio";
 
 const ICONS: Record<ToolId, LucideIcon> = {
   select: MousePointer2,
@@ -78,7 +78,7 @@ export function Toolbar({
   return (
     <div className="relative flex flex-col items-center">
       {/* horizontal tool rail */}
-      <div className="st-glass-float st-lift flex items-center gap-0.5 p-1.5 rounded-[20px]">
+      <div className="st-glass-float st-lift flex items-center gap-0.5 p-1.5 rounded-[20px]" style={glassBlur()}>
         {TOOLS.map((t, i) => {
           const Icon = ICONS[t.id];
           const active = tool === t.id;

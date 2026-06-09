@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
-  FLOORS, DEFAULT_PLOT, TOOLS, RECENT_PROJECTS, computeCost,
+  FLOORS, DEFAULT_PLOT, TOOLS, RECENT_PROJECTS, computeCost, glassBlur,
   type ToolId, type FurnitureKind, type PlacedItem, type Plot, type Wall, type Floor,
 } from "@/lib/studio";
 import { HomeScreen } from "./HomeScreen";
@@ -316,6 +316,7 @@ export function StudioApp() {
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="st-glass-float px-3 h-8 inline-flex items-center rounded-full"
+                style={glassBlur(16)}
               >
                 <span style={{ fontFamily: "var(--font-naxsha-mono)", fontSize: 10.5, letterSpacing: "0.04em", color: "var(--st-text-2)" }}>
                   {TOOLS.find((t) => t.id === tool)?.hint}
