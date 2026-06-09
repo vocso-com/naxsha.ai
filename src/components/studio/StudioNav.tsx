@@ -30,7 +30,7 @@ export function StudioNav({
 }) {
   return (
     <header
-      className="st-glass h-14 shrink-0 flex items-center px-4 gap-3 z-30"
+      className="st-glass st-nav-depth h-14 shrink-0 flex items-center px-4 gap-3 z-30"
       style={{ borderRadius: 0, borderLeft: "none", borderRight: "none", borderTop: "none" }}
     >
       <div className="flex items-center gap-2.5">

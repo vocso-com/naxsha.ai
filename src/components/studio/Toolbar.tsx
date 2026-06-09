@@ -76,7 +76,7 @@ export function Toolbar({
       </AnimatePresence>
 
       {/* horizontal tool rail */}
-      <div className="st-glass-float flex items-center gap-0.5 p-1 rounded-2xl">
+      <div className="st-glass-float st-lift flex items-center gap-0.5 p-1 rounded-2xl">
         {TOOLS.map((t, i) => {
           const Icon = ICONS[t.id];
           const active = tool === t.id;
