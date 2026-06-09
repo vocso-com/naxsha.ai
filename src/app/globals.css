@@ -24,3 +24,496 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ============================================================
+   Naxsha v2 — drafting-studio design tokens
+   Additive: only applies to elements that opt in via the
+   .naxsha-theme wrapper or the explicit utility classes below.
+   The default Next.js page does NOT use any of these.
+   ============================================================ */
+@theme {
+  /* === Naxsha Blue tonal stack === */
+  --color-naxsha: #003D7A;
+  --color-naxsha-deep: #002952;
+  --color-naxsha-lift: #1F5A9E;
+  --color-naxsha-tint: #D8E4F1;
+  --color-naxsha-wash: #F2F6FB;
+
+  /* === Single accent: Terracotta === */
+  --color-terracotta: #B8552B;
+  --color-terracotta-soft: #F4A87A;
+
+  /* === Success === */
+  --color-verandah: #4D7C0F;
+
+  /* === Surfaces === */
+  --color-plot: #FAFAF7;
+  --color-card: #FFFFFF;
+  --color-grid: #E8E5DC;
+
+  /* === Text === */
+  --color-ink: #1A1A1A;
+  --color-graphite: #495057;
+  --color-graphite-soft: #6C757D;
+
+  /* === Borders / dividers === */
+  --color-mist: #DEE2E6;
+
+  /* === Type families (used inside .naxsha-theme) === */
+  --font-naxsha-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-naxsha-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.naxsha-theme {
+  background: var(--color-plot);
+  color: var(--color-graphite);
+  font-family: var(--font-naxsha-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.naxsha-theme h1,
+.naxsha-theme h2,
+.naxsha-theme h3,
+.naxsha-theme h4,
+.naxsha-theme h5,
+.naxsha-theme h6 {
+  color: var(--color-ink);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-family: var(--font-naxsha-sans);
+}
+
+.naxsha-theme ::selection {
+  background: var(--color-naxsha-tint);
+  color: var(--color-naxsha-deep);
+}
+
+.naxsha-theme .mono,
+.naxsha-theme .tnum {
+  font-family: var(--font-naxsha-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "calt" 0;
+}
+
+.naxsha-theme .label {
+  font-family: var(--font-naxsha-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-graphite-soft);
+}
+
+.naxsha-theme .canvas-grid {
+  background-color: var(--color-plot);
+  background-image:
+    linear-gradient(to right, var(--color-grid) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, var(--color-grid) 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+}
+
+.naxsha-theme .divider-h { border-bottom: 0.5px solid var(--color-mist); }
+.naxsha-theme .divider-v { border-right: 0.5px solid var(--color-mist); }
+
+.naxsha-theme :where(button, a, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px solid var(--color-naxsha-lift);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbars only inside the theme wrapper */
+.naxsha-theme * { scrollbar-width: thin; scrollbar-color: var(--color-mist) transparent; }
+.naxsha-theme *::-webkit-scrollbar { width: 10px; height: 10px; }
+.naxsha-theme *::-webkit-scrollbar-thumb {
+  background: var(--color-mist);
+  border-radius: 999px;
+  border: 3px solid var(--color-plot);
+}
+.naxsha-theme *::-webkit-scrollbar-thumb:hover { background: var(--color-naxsha-tint); }
+
+/* Reveal-on-scroll micro-animation, only inside theme */
+@keyframes naxsha-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.naxsha-theme .fade-in { animation: naxsha-fade-in 320ms ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .naxsha-theme *,
+  .naxsha-theme *::before,
+  .naxsha-theme *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Naxsha homepage — fluid type + extra primitives
+   Used by /src/app/page.tsx and /src/components/home/*
+   ============================================================ */
+.naxsha-theme .h-display {
+  font-size: clamp(36px, 4.5vw, 72px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.naxsha-theme .h-section {
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.naxsha-theme .h-card {
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.naxsha-theme .t-body {
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.65;
+  color: var(--color-graphite);
+}
+.naxsha-theme .t-lead {
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.55;
+  color: var(--color-graphite);
+}
+.naxsha-theme .gutter {
+  padding-left: clamp(24px, 4vw, 96px);
+  padding-right: clamp(24px, 4vw, 96px);
+}
+.naxsha-theme .wrap {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+@media (min-width: 1920px) {
+  .naxsha-theme .wrap { max-width: 1680px; }
+}
+
+/* Hairline grid for FinalCTA — white grid at 6% on Naxsha Blue */
+.naxsha-theme .cta-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+}
+
+/* Mask-reveal lines for orchestrated headline */
+.naxsha-theme .mask-line { overflow: hidden; display: block; }
+
+/* Marquee for city row */
+@keyframes naxsha-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.naxsha-theme .marquee-track {
+  animation: naxsha-marquee 38s linear infinite;
+  will-change: transform;
+}
+.naxsha-theme .marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Button primitives */
+.naxsha-theme .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--color-terracotta);
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  border: 0.5px solid var(--color-terracotta);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+.naxsha-theme .btn-primary:hover { background: #A24823; transform: translateY(-1px); }
+.naxsha-theme .btn-primary:active { transform: translateY(0); }
+
+.naxsha-theme .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-naxsha);
+  font-weight: 500;
+  font-size: 14px;
+  border: 0.5px solid var(--color-mist);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.naxsha-theme .btn-ghost:hover { border-color: var(--color-naxsha); background: var(--color-naxsha-wash); }
+
+.naxsha-theme .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 0.5px solid var(--color-mist);
+  background: var(--color-card);
+  font-family: var(--font-naxsha-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+.naxsha-theme .card {
+  background: var(--color-card);
+  border: 0.5px solid var(--color-mist);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* Pricing card hover */
+.naxsha-theme .price-card { transition: transform 220ms ease, border-color 220ms ease; }
+.naxsha-theme .price-card:hover { transform: translateY(-2px); border-color: var(--color-naxsha); }
+
+/* No-shadow safety override: blow away any accidental drop-shadows on focus */
+.naxsha-theme *:focus { box-shadow: none; }
+
+/* === PRINT / PDF EXPORT — force motion to final state, kill animations === */
+@media print {
+  @page {
+    size: 1440px 8400px;
+    margin: 0;
+  }
+  html, body { background: var(--color-plot) !important; }
+  .naxsha-theme *,
+  .naxsha-theme *::before,
+  .naxsha-theme *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .naxsha-theme {
+    background: var(--color-plot) !important;
+  }
+  /* Make sure marquee, sticky, fixed elements don't break PDF flow */
+  .naxsha-theme [class*="sticky"],
+  .naxsha-theme [style*="position: fixed"] {
+    position: static !important;
+  }
+  /* Avoid breaking section content across pages */
+  .naxsha-theme section { break-inside: avoid; page-break-inside: avoid; }
+}
+
+/* ============================================================
+   GLASS + COLORED SECTIONS — bolder rhythm
+   ============================================================ */
+
+/* Glass surfaces — translucent fill + backdrop blur + hairline */
+.naxsha-theme .glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 0.5px solid rgba(255,255,255,0.6);
+}
+.naxsha-theme .glass-tint {
+  background: rgba(216,228,241,0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 0.5px solid rgba(255,255,255,0.55);
+}
+.naxsha-theme .glass-dark {
+  background: rgba(0,41,82,0.45);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 0.5px solid rgba(255,255,255,0.10);
+  color: #FFFFFF;
+}
+.naxsha-theme .glass-pill {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 0.5px solid rgba(255,255,255,0.6);
+}
+
+/* Colored section blocks */
+.naxsha-theme .section-dark { background: var(--color-naxsha); color: #FFFFFF; }
+.naxsha-theme .section-deep { background: var(--color-naxsha-deep); color: #FFFFFF; }
+.naxsha-theme .section-tint { background: var(--color-naxsha-tint); }
+.naxsha-theme .section-plot { background: var(--color-plot); }
+.naxsha-theme .section-card { background: var(--color-card); }
+
+/* Inverted heading color inside dark sections */
+.naxsha-theme .section-dark h1,
+.naxsha-theme .section-dark h2,
+.naxsha-theme .section-dark h3,
+.naxsha-theme .section-dark h4,
+.naxsha-theme .section-dark h5,
+.naxsha-theme .section-deep h1,
+.naxsha-theme .section-deep h2,
+.naxsha-theme .section-deep h3,
+.naxsha-theme .section-deep h4,
+.naxsha-theme .section-deep h5 {
+  color: #FFFFFF;
+}
+.naxsha-theme .section-dark .t-body,
+.naxsha-theme .section-deep .t-body,
+.naxsha-theme .section-dark .t-lead,
+.naxsha-theme .section-deep .t-lead {
+  color: rgba(255,255,255,0.78);
+}
+.naxsha-theme .section-dark .label,
+.naxsha-theme .section-deep .label {
+  color: rgba(255,255,255,0.55);
+}
+
+/* Decorative drafted-grid overlay — works on any background */
+.naxsha-theme .draft-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.05) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+}
+.naxsha-theme .draft-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(0,61,122,0.05) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(0,61,122,0.05) 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+}
+
+/* Terracotta accent shapes — vivid graphic element */
+.naxsha-theme .accent-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-terracotta);
+}
+
+/* ============================================================
+   NAXSHA STUDIO — themeable liquid-glass workspace
+   Tokens flip on .studio-root[data-theme]; .st-glass* are the
+   liquid-glass surfaces (blur + saturation + bright top edge).
+   ============================================================ */
+.studio-root[data-theme="dark"] {
+  --st-bg:
+    radial-gradient(1100px 780px at 14% -8%, rgba(40, 90, 165, 0.16), transparent 60%),
+    radial-gradient(900px 640px at 102% 108%, rgba(184, 85, 43, 0.10), transparent 58%),
+    #0B0D10;
+  --st-shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.7);
+  --st-inner: rgba(0, 0, 0, 0.22);
+  --st-grid: rgba(130, 170, 220, 0.07);
+  --st-grid-tick: rgba(130, 170, 220, 0.13);
+  --st-nav: rgba(14, 17, 22, 0.86);
+  --st-panel: rgba(18, 22, 28, 0.62);
+  --st-float: rgba(22, 26, 32, 0.7);
+  --st-border: rgba(255, 255, 255, 0.1);
+  --st-border-2: rgba(255, 255, 255, 0.16);
+  --st-hi: rgba(255, 255, 255, 0.22);
+  --st-text: rgba(255, 255, 255, 0.94);
+  --st-text-2: rgba(255, 255, 255, 0.62);
+  --st-text-3: rgba(255, 255, 255, 0.42);
+  --st-hover: rgba(255, 255, 255, 0.07);
+  --st-chip: rgba(255, 255, 255, 0.05);
+  --st-chip-border: rgba(255, 255, 255, 0.14);
+  --st-active: #ffffff;
+  --st-active-text: #0e1116;
+  --st-ai-bubble: rgba(255, 255, 255, 0.08);
+  --st-ai-border: rgba(255, 255, 255, 0.07);
+  --st-input: rgba(255, 255, 255, 0.05);
+  --st-sheet: #fafaf7;
+  --st-sheet-edge: rgba(0, 0, 0, 0.35);
+}
+.studio-root[data-theme="light"] {
+  --st-bg:
+    radial-gradient(1100px 760px at 14% -10%, rgba(70, 140, 235, 0.1), transparent 60%),
+    radial-gradient(880px 620px at 100% 2%, rgba(120, 175, 240, 0.07), transparent 56%),
+    linear-gradient(172deg, #fcfdff 0%, #eef4fc 100%);
+  --st-shadow: 0 14px 40px -24px rgba(40, 80, 150, 0.26);
+  --st-inner: rgba(40, 70, 130, 0.04);
+  --st-grid: rgba(0, 61, 122, 0.07);
+  --st-grid-tick: rgba(0, 61, 122, 0.13);
+  --st-nav: rgba(255, 255, 255, 0.78);
+  --st-panel: rgba(255, 255, 255, 0.7);
+  --st-float: rgba(255, 255, 255, 0.8);
+  --st-border: rgba(0, 48, 110, 0.14);
+  --st-border-2: rgba(0, 48, 110, 0.22);
+  --st-hi: rgba(255, 255, 255, 0.98);
+  --st-text: #14213a;
+  --st-text-2: #44597a;
+  --st-text-3: #7488a6;
+  --st-hover: rgba(0, 71, 145, 0.07);
+  --st-chip: rgba(255, 255, 255, 0.82);
+  --st-chip-border: rgba(0, 48, 110, 0.14);
+  --st-active: #003d7a;
+  --st-active-text: #ffffff;
+  --st-ai-bubble: rgba(0, 71, 145, 0.08);
+  --st-ai-border: rgba(0, 48, 110, 0.1);
+  --st-input: rgba(255, 255, 255, 0.75);
+  --st-sheet: #ffffff;
+  --st-sheet-edge: rgba(0, 40, 90, 0.18);
+}
+
+.studio-root {
+  background: var(--st-bg);
+  transition: background 320ms ease;
+}
+
+/* Liquid-glass surfaces: translucent fill, heavy blur + saturation,
+   hairline border, and a bright inset top edge for the specular look. */
+.studio-root .st-glass {
+  background: var(--st-panel);
+  backdrop-filter: blur(30px) saturate(185%);
+  -webkit-backdrop-filter: blur(30px) saturate(185%);
+  border: 0.5px solid var(--st-border);
+  box-shadow:
+    var(--st-shadow),
+    inset 0 0.5px 0 0 var(--st-hi),
+    inset 0 -10px 28px -18px var(--st-inner);
+}
+.studio-root .st-glass-float {
+  background: var(--st-float);
+  backdrop-filter: blur(22px) saturate(185%);
+  -webkit-backdrop-filter: blur(22px) saturate(185%);
+  border: 0.5px solid var(--st-border);
+  box-shadow:
+    var(--st-shadow),
+    inset 0 0.5px 0 0 var(--st-hi);
+}
+.studio-root .st-grid-overlay {
+  /* fine graph-paper grid — subtle hairlines everywhere */
+  background-image:
+    linear-gradient(var(--st-grid) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--st-grid) 0.5px, transparent 0.5px);
+  background-size: 11px 11px;
+}
+.studio-root .st-grid-ticks {
+  /* crosshair ticks — brighter grid lines at the major nodes, masked down to a
+     small "+" at every intersection so only the nodes read as crosshairs. Lives
+     on its own real element because masks on a ::after pseudo render blank here.
+     The intersections are shifted to the centre of each mask tile so the disc
+     reveals a full "+" (a disc anchored at the corner only shows a quarter). */
+  background-image:
+    linear-gradient(var(--st-grid-tick) 1px, transparent 1px),
+    linear-gradient(90deg, var(--st-grid-tick) 1px, transparent 1px);
+  background-size: 110px 110px;
+  background-position: 55px 55px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 5px, transparent 6px);
+  mask-image: radial-gradient(circle at 50% 50%, #000 5px, transparent 6px);
+  -webkit-mask-size: 110px 110px;
+  mask-size: 110px 110px;
+}
+
