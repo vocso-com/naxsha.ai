@@ -418,13 +418,10 @@ body {
     0 2px 4px -2px rgba(0, 0, 0, 0.5),
     0 10px 20px -8px rgba(0, 0, 0, 0.55),
     0 26px 50px -18px rgba(0, 0, 0, 0.6);
-  --st-shadow-nav:
-    0 1px 0 0 var(--st-border),
-    0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  /* dark: hairline edge only — the heavy drop shadow looked muddy here */
+  --st-shadow-nav: 0 1px 0 0 var(--st-border);
   --st-inner: rgba(0, 0, 0, 0.22);
   --st-grid: rgba(130, 170, 220, 0.07);
-  --st-nav: rgba(28, 34, 44, 0.55);
-  --st-nav-sheen: rgba(255, 255, 255, 0.07);
   --st-panel: rgba(18, 22, 28, 0.62);
   --st-float: rgba(22, 26, 32, 0.7);
   --st-menu: rgba(20, 24, 30, 0.97);
@@ -461,8 +458,6 @@ body {
     0 8px 22px -12px rgba(40, 70, 130, 0.22);
   --st-inner: rgba(40, 70, 130, 0.04);
   --st-grid: rgba(0, 61, 122, 0.07);
-  --st-nav: rgba(255, 255, 255, 0.55);
-  --st-nav-sheen: rgba(255, 255, 255, 0.6);
   --st-panel: rgba(255, 255, 255, 0.7);
   --st-float: rgba(255, 255, 255, 0.8);
   --st-menu: rgba(255, 255, 255, 0.98);
@@ -523,15 +518,12 @@ body {
     inset 0 0.5px 0 0 var(--st-hi),
     var(--st-shadow-nav);
 }
-/* Top-nav liquid-glass surface: translucent fill + heavy blur/saturation
-   + a soft top sheen, so the bar reads as frosted glass even over the
-   near-flat home background where there's little content to refract. */
+/* Top-nav glass surface: the same flat translucent fill as the other
+   .st-glass panels (no gradient) so it reads as the same frosted glass.
+   The real blur is applied inline via glassBlur() (Lightning CSS strips
+   backdrop-filter from class rules). */
 .studio-root .st-nav-surface {
-  background:
-    linear-gradient(180deg, var(--st-nav-sheen), transparent 72%),
-    var(--st-nav);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  background: var(--st-panel);
   border: 0.5px solid var(--st-border);
 }
 .studio-root .st-grid-overlay {
