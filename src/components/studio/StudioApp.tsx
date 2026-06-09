@@ -207,11 +207,8 @@ export function StudioApp() {
 
   return (
     <div className="studio-root naxsha-theme fixed inset-0 flex flex-col" data-theme={theme}>
-      {/* drafting grid texture over the whole workspace — fine graph-paper grid
-          plus a separate crosshair-tick layer (kept as its own real element so
-          the mask renders; masks on a ::after pseudo paint blank here) */}
+      {/* drafting grid texture over the whole workspace */}
       <div aria-hidden className="st-grid-overlay pointer-events-none fixed inset-0" />
-      <div aria-hidden className="st-grid-ticks pointer-events-none fixed inset-0" />
 
       <StudioNav
         projectName={projectName}

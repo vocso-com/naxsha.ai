@@ -69,6 +69,29 @@ function LayoutGlyph({ kind }: { kind: string }) {
   );
 }
 
+function Avatar({ from }: { from: "ai" | "user" }) {
+  if (from === "ai") {
+    return (
+      <span
+        className="shrink-0 h-7 w-7 rounded-full inline-flex items-center justify-center"
+        style={{ background: "rgba(184,85,43,0.18)", border: "0.5px solid rgba(184,85,43,0.4)" }}
+        title="Naxsha AI"
+      >
+        <Sparkles size={13} style={{ color: "#F4A87A" }} />
+      </span>
+    );
+  }
+  return (
+    <span
+      className="shrink-0 h-7 w-7 rounded-full inline-flex items-center justify-center text-[10px] font-semibold text-white"
+      style={{ background: "#003D7A", border: "0.5px solid var(--st-border-2)", letterSpacing: "0.02em" }}
+      title="deepak@vocso.com"
+    >
+      DC
+    </span>
+  );
+}
+
 export function Onboarding({ onComplete }: { onComplete: (answers: Record<string, string>) => void }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -122,7 +145,7 @@ export function Onboarding({ onComplete }: { onComplete: (answers: Record<string
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="w-full"
-        style={{ maxWidth: 560 }}
+        style={{ maxWidth: 720 }}
       >
         {/* eyebrow */}
         <div className="flex items-center justify-center gap-2 mb-6">
@@ -151,24 +174,27 @@ export function Onboarding({ onComplete }: { onComplete: (answers: Record<string
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex items-end gap-2 ${m.from === "user" ? "justify-end" : "justify-start"}`}
               >
+                {m.from === "ai" && <Avatar from="ai" />}
                 <div
                   className="px-3.5 py-2.5 rounded-2xl text-[14px] leading-snug"
                   style={
                     m.from === "user"
-                      ? { background: "#B8552B", color: "#fff", borderRadius: "16px 16px 4px 16px", maxWidth: "80%" }
-                      : { background: "var(--st-ai-bubble)", color: "var(--st-text)", borderRadius: "16px 16px 16px 4px", maxWidth: "85%", border: "0.5px solid var(--st-ai-border)" }
+                      ? { background: "#B8552B", color: "#fff", borderRadius: "16px 16px 4px 16px", maxWidth: "78%" }
+                      : { background: "var(--st-ai-bubble)", color: "var(--st-text)", borderRadius: "16px 16px 16px 4px", maxWidth: "82%", border: "0.5px solid var(--st-ai-border)" }
                   }
                 >
                   {m.text}
                 </div>
+                {m.from === "user" && <Avatar from="user" />}
               </motion.div>
             ))}
 
             {generating && (
-              <div className="flex justify-start">
-                <div className="px-3.5 py-3 rounded-2xl w-full" style={{ background: "var(--st-ai-bubble)", border: "0.5px solid var(--st-ai-border)" }}>
+              <div className="flex items-end gap-2 justify-start">
+                <Avatar from="ai" />
+                <div className="px-3.5 py-3 rounded-2xl flex-1" style={{ background: "var(--st-ai-bubble)", border: "0.5px solid var(--st-ai-border)" }}>
                   {GEN_STEPS.map((g, i) => (
                     <div key={g} className="flex items-center gap-2.5 py-1" style={{ opacity: i <= genIdx ? 1 : 0.35 }}>
                       <span
