@@ -81,7 +81,7 @@ export function StudioApp() {
   const fit = useCallback((s = size) => {
     if (!s.w || !s.h) return;
     const { CW, CH } = contentSize(plot);
-    const padL = chatOpen ? 380 : 48, padR = 348, padT = 56, padB = 104;
+    const padL = chatOpen ? 380 : 48, padR = 348, padT = 120, padB = 104;
     const availW = Math.max(200, s.w - padL - padR);
     const availH = Math.max(200, s.h - padT - padB);
     const zoom = Math.min(2, Math.max(0.5, Math.min(availW / CW, availH / CH)));
@@ -219,7 +219,7 @@ export function StudioApp() {
   }, [messages.length]);
 
   return (
-    <div className="studio-root naxsha-theme fixed inset-0 flex flex-col" data-theme={theme}>
+    <div className="studio-root naxsha-theme fixed inset-0" data-theme={theme}>
       {/* drafting grid texture over the whole workspace */}
       <div aria-hidden className="st-grid-overlay pointer-events-none fixed inset-0" />
 
@@ -238,7 +238,7 @@ export function StudioApp() {
         onNewProject={newProject}
       />
 
-      <div ref={wrapRef} className="relative flex-1 overflow-hidden">
+      <div ref={wrapRef} className="absolute inset-0 overflow-hidden">
         {/* home + onboarding workspace glow */}
         {phase !== "studio" && (
           <>
@@ -294,7 +294,7 @@ export function StudioApp() {
             {/* zoom controls — centered in the canvas gap, mirroring the
                 bottom toolbar so it never slides under the side panels */}
             <div
-              className="absolute top-4 z-20 flex justify-center pointer-events-none"
+              className="absolute top-[80px] z-20 flex justify-center pointer-events-none"
               style={{ left: chatOpen ? 360 : 16, right: 332, transition: "left 420ms cubic-bezier(0.22,1,0.36,1)" }}
             >
               <div className="pointer-events-auto">
@@ -308,7 +308,7 @@ export function StudioApp() {
 
             {/* active-tool hint — tucked to the left of the canvas gap */}
             <div
-              className="absolute top-4 z-10"
+              className="absolute top-[80px] z-10"
               style={{ left: chatOpen ? 376 : 32, transition: "left 420ms cubic-bezier(0.22,1,0.36,1)" }}
             >
               <motion.div

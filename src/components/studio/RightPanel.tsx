@@ -25,7 +25,7 @@ export function RightPanel({
   onClear: () => void;
 }) {
   return (
-    <div className="st-glass absolute right-4 top-4 bottom-4 w-[316px] z-20 flex flex-col rounded-[22px] overflow-hidden" style={glassBlur()}>
+    <div className="st-glass absolute right-4 top-[80px] bottom-4 w-[316px] z-20 flex flex-col rounded-[22px] overflow-hidden" style={glassBlur()}>
       {/* tabs */}
       <div className="flex items-center gap-1 p-1.5 m-3 rounded-xl" style={{ background: "var(--st-input)" }}>
         {(["properties", "costs"] as const).map((t) => (

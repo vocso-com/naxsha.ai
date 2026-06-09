@@ -65,7 +65,7 @@ export function HomeScreen({
 }) {
   return (
     <div className="absolute inset-0 overflow-y-auto">
-      <div className="min-h-full w-full flex flex-col items-center justify-center px-6 py-12">
+      <div className="min-h-full w-full flex flex-col items-center justify-center px-6 pb-12 pt-28">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}

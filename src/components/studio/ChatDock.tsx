@@ -52,7 +52,7 @@ export function ChatDock({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -24 }}
           transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-          className="st-glass absolute left-4 top-4 bottom-4 w-[340px] z-20 flex flex-col rounded-[22px] overflow-hidden"
+          className="st-glass absolute left-4 top-[80px] bottom-4 w-[340px] z-20 flex flex-col rounded-[22px] overflow-hidden"
           style={glassBlur()}
         >
           {/* header */}
