@@ -313,10 +313,10 @@ export function FloorCanvas({
     >
       <g ref={gRef} transform={`translate(${view.tx} ${view.ty}) scale(${view.zoom})`}>
         {/* sheet */}
-        <rect x={M * 0.4} y={M * 0.4} width={W - M * 0.8} height={H - M * 0.8} fill="#FAFAF7" stroke="#DEE2E6" strokeWidth={0.5} rx={6} />
+        <rect x={M * 0.4} y={M * 0.4} width={W - M * 0.8} height={H - M * 0.8} style={{ fill: "var(--st-sheet)", stroke: "var(--st-sheet-edge)" }} strokeWidth={0.5} rx={6} />
         <defs>
           <pattern id="fc-grid" width={S} height={S} patternUnits="userSpaceOnUse">
-            <path d={`M ${S} 0 L 0 0 0 ${S}`} fill="none" stroke="#E8E5DC" strokeWidth={0.5} />
+            <path d={`M ${S} 0 L 0 0 0 ${S}`} fill="none" style={{ stroke: "var(--st-sheet-grid)" }} strokeWidth={0.5} />
           </pattern>
           <pattern id="fc-grid-5" width={S * 5} height={S * 5} patternUnits="userSpaceOnUse">
             <path d={`M ${S * 5} 0 L 0 0 0 ${S * 5}`} fill="none" stroke="rgba(0,61,122,0.10)" strokeWidth={0.5} />
@@ -358,7 +358,7 @@ export function FloorCanvas({
             if (!d) return null;
             return (
               <g key={"d-" + r.id}>
-                <line x1={d.p1[0]} y1={d.p1[1]} x2={d.p2[0]} y2={d.p2[1]} stroke="#FAFAF7" strokeWidth={3} />
+                <line x1={d.p1[0]} y1={d.p1[1]} x2={d.p2[0]} y2={d.p2[1]} style={{ stroke: "var(--st-sheet)" }} strokeWidth={3} />
                 <line x1={d.hinge[0]} y1={d.hinge[1]} x2={d.leafEnd[0]} y2={d.leafEnd[1]} stroke={STROKE} strokeWidth={1.2} />
                 <path d={`M ${d.p2[0]} ${d.p2[1]} A ${d.len} ${d.len} 0 0 ${d.sweep} ${d.leafEnd[0]} ${d.leafEnd[1]}`} fill="none" stroke={STROKE} strokeWidth={0.7} strokeDasharray="2 2" opacity={0.55} />
               </g>
@@ -371,7 +371,7 @@ export function FloorCanvas({
           {floor.rooms.flatMap((r) =>
             windowSegments(r).map((w, i) => (
               <g key={`w-${r.id}-${i}`}>
-                <line x1={w.x1} y1={w.y1} x2={w.x2} y2={w.y2} stroke="#FAFAF7" strokeWidth={3.5} />
+                <line x1={w.x1} y1={w.y1} x2={w.x2} y2={w.y2} style={{ stroke: "var(--st-sheet)" }} strokeWidth={3.5} />
                 <line x1={w.x1} y1={w.y1} x2={w.x2} y2={w.y2} stroke={STROKE} strokeWidth={0.7} />
               </g>
             ))

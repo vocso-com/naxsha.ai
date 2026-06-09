@@ -435,6 +435,7 @@ body {
   --st-input: rgba(255, 255, 255, 0.05);
   --st-sheet: #fafaf7;
   --st-sheet-edge: rgba(0, 0, 0, 0.35);
+  --st-sheet-grid: #e8e5dc;
 }
 .studio-root[data-theme="light"] {
   --st-bg:
@@ -463,6 +464,7 @@ body {
   --st-input: rgba(255, 255, 255, 0.75);
   --st-sheet: #ffffff;
   --st-sheet-edge: rgba(0, 40, 90, 0.18);
+  --st-sheet-grid: #e4ebf4;
 }
 
 .studio-root {
