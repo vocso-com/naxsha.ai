@@ -418,8 +418,8 @@ body {
     0 2px 4px -2px rgba(0, 0, 0, 0.5),
     0 10px 20px -8px rgba(0, 0, 0, 0.55),
     0 26px 50px -18px rgba(0, 0, 0, 0.6);
-  /* dark: hairline edge only — the heavy drop shadow looked muddy here */
-  --st-shadow-nav: 0 1px 0 0 var(--st-border);
+  /* dark: no edge — let the blur do the separating (clean frosted glass) */
+  --st-shadow-nav: 0 0 0 0 transparent;
   --st-inner: rgba(0, 0, 0, 0.22);
   --st-grid: rgba(130, 170, 220, 0.07);
   --st-panel: rgba(18, 22, 28, 0.62);
@@ -453,9 +453,8 @@ body {
     0 2px 4px -2px rgba(40, 70, 130, 0.12),
     0 10px 20px -8px rgba(40, 70, 130, 0.16),
     0 26px 50px -18px rgba(40, 70, 130, 0.2);
-  --st-shadow-nav:
-    0 1px 0 0 var(--st-border),
-    0 8px 22px -12px rgba(40, 70, 130, 0.22);
+  /* light: soft drop shadow only — no hard hairline edge */
+  --st-shadow-nav: 0 8px 22px -12px rgba(40, 70, 130, 0.22);
   --st-inner: rgba(40, 70, 130, 0.04);
   --st-grid: rgba(0, 61, 122, 0.07);
   --st-panel: rgba(255, 255, 255, 0.7);
@@ -519,12 +518,12 @@ body {
     var(--st-shadow-nav);
 }
 /* Top-nav glass surface: the same flat translucent fill as the other
-   .st-glass panels (no gradient) so it reads as the same frosted glass.
+   .st-glass panels (no gradient, no hard border line) so it reads as the
+   same frosted glass — separation comes from the blur + a soft shadow.
    The real blur is applied inline via glassBlur() (Lightning CSS strips
    backdrop-filter from class rules). */
 .studio-root .st-nav-surface {
   background: var(--st-panel);
-  border: 0.5px solid var(--st-border);
 }
 .studio-root .st-grid-overlay {
   /* fine graph-paper grid — subtle hairlines everywhere */
