@@ -2,17 +2,7 @@
 
 import { motion } from "motion/react";
 import { Sparkles, PenLine, ArrowRight, ArrowUpRight, FileStack } from "lucide-react";
-
-type Project = { id: string; name: string; files: number; updated: string; glyph: "plan" | "render" | "blank" };
-
-const RECENTS: Project[] = [
-  { id: "p1", name: "Rao Residence", files: 3, updated: "just now", glyph: "plan" },
-  { id: "p2", name: "Sharma Villa", files: 4, updated: "2 months ago", glyph: "render" },
-  { id: "p3", name: "Untitled home", files: 0, updated: "2 months ago", glyph: "blank" },
-  { id: "p4", name: "Iyer Bungalow", files: 6, updated: "5 months ago", glyph: "plan" },
-  { id: "p5", name: "Mehta Apartment", files: 2, updated: "6 months ago", glyph: "render" },
-  { id: "p6", name: "Reddy Farmhouse", files: 5, updated: "8 months ago", glyph: "plan" },
-];
+import { RECENT_PROJECTS as RECENTS, type RecentProject } from "@/lib/studio";
 
 function greeting() {
   const h = new Date().getHours();
@@ -22,7 +12,7 @@ function greeting() {
   return "Good evening";
 }
 
-function MiniThumb({ glyph }: { glyph: Project["glyph"] }) {
+function MiniThumb({ glyph }: { glyph: RecentProject["glyph"] }) {
   const stroke = "var(--st-text-2)";
   const accent = "var(--st-active)";
   return (

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
-  FLOORS, DEFAULT_PLOT, TOOLS, computeCost,
+  FLOORS, DEFAULT_PLOT, TOOLS, RECENT_PROJECTS, computeCost,
   type ToolId, type FurnitureKind, type PlacedItem, type Plot, type Wall, type Floor,
 } from "@/lib/studio";
 import { HomeScreen } from "./HomeScreen";
@@ -156,6 +156,19 @@ export function StudioApp() {
     setPhase("studio");
   };
 
+  // open an existing project by id (from the home grid or the nav switcher)
+  const openProject = (id: string) => {
+    const p = RECENT_PROJECTS.find((x) => x.id === id);
+    startBlank(p?.name ?? "Untitled home");
+  };
+
+  // "New project" — return to the home screen so the user picks
+  // Draft-with-AI or Draw-from-scratch (the new-project flow).
+  const newProject = () => {
+    fitted.current = false;
+    setPhase("home");
+  };
+
   const send = (text?: string) => {
     const value = (text ?? draft).trim();
     if (!value) return;
@@ -220,6 +233,9 @@ export function StudioApp() {
         activeFloorId={activeFloorId}
         onPickFloor={(id) => { setActiveFloorId(id); setSelected(null); }}
         onAddFloor={addFloor}
+        projects={RECENT_PROJECTS}
+        onSwitchProject={openProject}
+        onNewProject={newProject}
       />
 
       <div ref={wrapRef} className="relative flex-1 overflow-hidden">
@@ -256,7 +272,7 @@ export function StudioApp() {
               key="home"
               onGenerate={() => setPhase("onboarding")}
               onDraw={() => startBlank()}
-              onOpenProject={() => startBlank("Rao Residence")}
+              onOpenProject={openProject}
             />
           )}
           {phase === "onboarding" && <Onboarding key="onb" onComplete={completeOnboarding} />}

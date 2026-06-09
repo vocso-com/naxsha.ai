@@ -97,6 +97,24 @@ export type PlacedItem = {
 
 export const DEFAULT_PLOT: Plot = { w: 30, h: 40, facing: "S" };
 
+// Recent projects — shared by the home screen grid and the nav project switcher.
+export type RecentProject = {
+  id: string;
+  name: string;
+  files: number;
+  updated: string;
+  glyph: "plan" | "render" | "blank";
+};
+
+export const RECENT_PROJECTS: RecentProject[] = [
+  { id: "p1", name: "Rao Residence", files: 3, updated: "just now", glyph: "plan" },
+  { id: "p2", name: "Sharma Villa", files: 4, updated: "2 months ago", glyph: "render" },
+  { id: "p3", name: "Untitled home", files: 0, updated: "2 months ago", glyph: "blank" },
+  { id: "p4", name: "Iyer Bungalow", files: 6, updated: "5 months ago", glyph: "plan" },
+  { id: "p5", name: "Mehta Apartment", files: 2, updated: "6 months ago", glyph: "render" },
+  { id: "p6", name: "Reddy Farmhouse", files: 5, updated: "8 months ago", glyph: "plan" },
+];
+
 export const FLOORS: Floor[] = [
   {
     id: "ground",
